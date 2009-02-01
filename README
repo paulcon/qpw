@@ -1,0 +1,46 @@
+qpw - version 0.0
+
+Paul Constantine - ICME
+paul.constantine@stanford.edu
+
+The utility qpw (for quadrature points and weights) computes the 
+quadrature points and weights for Gauss-Legendre and Clenshaw-Curtis
+quadrature rules with multivariate extensions to both tensor product
+grids and Smolyak-type sparse grids. Its usage is the following:
+
+[shell]$ qpw ptype gtype dimension level
+
+Parameters:
+ptype: gauss, cc
+gtype: tensor, sparse
+dimension: an integer greater than 0
+level: For one-dimensional rules and tensor grids, this is the number
+	of points in each direction. For sparse grids, this is the standard
+	level parameter. 
+	
+Note that gtype is meaningless if dimension=1.
+
+Output:
+qpw will write separate text files for the points and the weights. Each 
+multidimensinal point will occupy one line of the points file, and the
+corresponding line in the weights file contains the appropriate weight.
+The files will be labeled with the input parameters.
+
+A note on memory management:
+qpw will display a warning if it is about to allocate over 200M for the
+points and weights. This version is currently not optimized for the 
+sparse grids, meaning that it allocates the largest tensor grid necessary 
+to construct the sparse grid. Therefore, you want to stick to relatively
+low levels and dimensions. 
+
+Questions? Email Paul at paul.constantine@stanford.edu
+
+For a comprehensive list of quadrature software, go to John Burkhardt's 
+page at:
+http://people.scs.fsu.edu/~burkardt/
+
+For recent literature on quadrature for random PDEs, see
+F. Nobile, R. Tempone, and C.G. Webster. A Sparse Grid Stochastic 
+Collocation Method for Partial Differential Equations with Random Input
+Data. SINUM, May 2008.
+
